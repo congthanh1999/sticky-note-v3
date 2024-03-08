@@ -1,0 +1,32 @@
+.note-container {
+  width: 200px;
+  height: 230px;
+  background-color: yellow;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: absolute;
+  visibility: hidden;
+}
+
+.note-container.opened {
+  visibility: visible;
+}
+
+.note-content {
+  width: 200px;
+  height: 200px;
+  padding: 5px;
+}
+
+.note-content textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.note-container.active {
+  background-color: lightyellow;
+}

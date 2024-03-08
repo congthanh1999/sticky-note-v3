@@ -1,0 +1,23 @@
+.note-summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: aliceblue;
+}
+
+.note-summary:hover {
+  cursor: default;
+  background-color: cyan;
+}
+
+.short-content {
+  display: block;
+  margin: auto 0;
+}
+
+.right-content {
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+}
