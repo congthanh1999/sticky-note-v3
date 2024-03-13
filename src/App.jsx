@@ -3,11 +3,11 @@ import "./App.css";
 import MainScreen from "./components/MainScreen";
 import Note from "./components/Note";
 import { useNotesContext } from "./hooks/useNotesContext";
-import { getRandom } from "../utils/truncate";
+import { getRandom } from "../utils/utils";
 
 function App() {
   const { notes, dispatch } = useNotesContext();
-  const [openedIndexes, setOpenedIndexes] = useState(new Set());
+  const [activeList, setActiveList] = useState(["10000"]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +22,19 @@ function App() {
     fetchData();
   }, [dispatch]);
 
+  const handleActiveList = (id) => {
+    setActiveList((prev) => {
+      const currentActiveList = Array.from(new Set([...prev, id]));
+      let newActiveList = currentActiveList.filter((item) => item !== id);
+      newActiveList = [...newActiveList, id];
+      return newActiveList;
+    });
+  };
+
+  const checkIsOpened = (id) => {
+    return activeList.includes(id);
+  };
+
   const handleAddNewNote = async () => {
     const newNote = {
       id: `${getRandom()}`,
@@ -30,13 +43,14 @@ function App() {
     };
 
     dispatch({ type: "CREATE_NOTE", payload: newNote });
-    setOpenedIndexes(new Set([...openedIndexes, newNote.id]));
 
     await fetch(`http://localhost:3000/notes`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(newNote),
     });
+
+    handleActiveList(newNote.id);
   };
 
   const handleDeleteNote = async (id) => {
@@ -47,35 +61,25 @@ function App() {
     await fetch(`http://localhost:3000/notes/${id}`, {
       method: "DELETE",
     });
+
+    setActiveList((prev) => prev.filter((item) => item !== id));
   };
 
   const handleOpenNote = (id) => {
-    const newOpenedIndexes = new Set([...openedIndexes, id]);
-
-    notes.forEach((note) => {
-      if (note.id === id) {
-        setOpenedIndexes(newOpenedIndexes);
-      }
-    });
+    handleActiveList(id);
   };
 
-  const handleCloseNote = (id) => {
-    notes.forEach((note) => {
-      if (note.id === id) {
-        if (note.content === "") {
-          handleDeleteNote(note.id);
-        } else {
-          const newOpenedIndexes = new Set([...openedIndexes]);
-          newOpenedIndexes.delete(id);
-
-          setOpenedIndexes(newOpenedIndexes);
-        }
-      }
-    });
+  const handleCloseNote = (event, id) => {
+    event.stopPropagation();
+    if (notes.find((note) => note.id === id)?.content === "") {
+      handleDeleteNote(id);
+    } else {
+      setActiveList((prev) => prev.filter((item) => item !== id));
+    }
   };
 
-  const checkIsOpened = (id) => {
-    return openedIndexes.has(id);
+  const handleClick = (id) => {
+    handleActiveList(id);
   };
 
   return (
@@ -84,16 +88,22 @@ function App() {
         handleAddNewNote={handleAddNewNote}
         handleOpenNote={handleOpenNote}
         handleDeleteNote={handleDeleteNote}
+        handleDrag={() => handleClick("10000")}
+        handleClick={() => handleClick("10000")}
         data={notes}
+        zIndex={activeList.indexOf("10000")}
       />
       {notes &&
         notes.map((note) => (
           <Note
             key={note.id}
             handleAddNewNote={handleAddNewNote}
-            handleCloseNote={() => handleCloseNote(note.id)}
+            handleCloseNote={(event) => handleCloseNote(event, note.id)}
             data={note}
             isOpened={checkIsOpened(note.id)}
+            handleDrag={() => handleClick(note.id)}
+            handleClick={() => handleClick(note.id)}
+            zIndex={activeList.indexOf(note.id)}
           />
         ))}
     </div>

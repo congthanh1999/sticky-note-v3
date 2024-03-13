@@ -1,13 +1,13 @@
 import { FaPlus, FaTimes } from "react-icons/fa";
 import "./index.css";
 
-const ControlBar = ({ handleAddNewNote, handleCloseNote }) => {
+const ControlBar = ({ handleAddNewNote, handleCloseNote, inactive }) => {
   return (
-    <div className="control-bar">
-      <button onClick={handleAddNewNote}>
+    <div className={`control-bar ${inactive}`}>
+      <button className={`${inactive}`} onClick={handleAddNewNote}>
         <FaPlus />
       </button>
-      <button onClick={handleCloseNote}>
+      <button className={`${inactive}`} onClick={handleCloseNote}>
         <FaTimes />
       </button>
     </div>

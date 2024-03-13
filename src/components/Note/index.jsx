@@ -7,30 +7,23 @@ import { useNotesContext } from "../../hooks/useNotesContext";
 
 const Note = (props) => {
   const [isActive, setIsActive] = useState(false);
-  // const [data, setData] = useState(props.data);
   const noteRef = useRef(null);
   const { dispatch } = useNotesContext();
-  const [zIndex, setZIndex] = useState(999);
 
   const handleClickOutside = () => {
     setIsActive(false);
-    setZIndex((prev) => --prev);
   };
 
   const handleOnClick = () => {
     setIsActive(true);
-    setZIndex(999);
-  };
 
-  const handleDrag = () => {
-    setZIndex(999);
+    props.handleClick();
   };
 
   const handleWriteNote = async (event, id) => {
     event.preventDefault();
 
     const newData = { ...props.data, content: event.target.value };
-    // setData(newData);
 
     dispatch({
       type: "UPDATE_NOTE",
@@ -47,24 +40,26 @@ const Note = (props) => {
   useClickOutside(noteRef, handleClickOutside);
 
   return (
-    <Draggable handle=".control-bar" onStart={handleDrag}>
+    <Draggable handle=".control-bar" onStart={props.handleDrag}>
       <div
         ref={noteRef}
         className={`note-container ${isActive ? "active" : ""} ${
           props.isOpened ? `opened` : ``
         }`}
-        style={{ zIndex: `${zIndex}` }}
+        style={{ zIndex: `${props.zIndex}` }}
         onClick={handleOnClick}
       >
         <ControlBar
           handleAddNewNote={props.handleAddNewNote}
           handleCloseNote={props.handleCloseNote}
+          inactive={isActive ? `` : `inactive`}
         />
         <div className="note-content">
           <textarea
             placeholder="Write your note here!"
             defaultValue={props.data.content}
             onChange={(event) => handleWriteNote(event, props.data.id)}
+            spellCheck={false}
           ></textarea>
         </div>
       </div>

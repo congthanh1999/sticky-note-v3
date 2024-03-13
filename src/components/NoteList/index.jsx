@@ -1,6 +1,6 @@
 import NoteSummary from "../NoteSummary";
 import "./index.css";
-import { truncate } from "../../../utils/truncate";
+import { truncate } from "../../../utils/utils";
 
 const NoteList = ({ data, handleOpenNote, handleDeleteNote }) => {
   return (

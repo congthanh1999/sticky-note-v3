@@ -3,7 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 5px;
-  background-color: aliceblue;
+  background-color: #414141;
+  color: white;
 }
 
 .note-summary:hover {
@@ -19,5 +20,5 @@
 .right-content {
   display: flex;
   flex-direction: row;
-  gap:5px;
+  gap: 5px;
 }

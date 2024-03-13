@@ -8,11 +8,18 @@ const MainScreen = ({
   handleCloseNote,
   handleOpenNote,
   handleDeleteNote,
+  handleDrag,
+  handleClick,
   data,
+  zIndex,
 }) => {
   return (
-    <Draggable handle=".control-bar">
-      <div className="main-screen">
+    <Draggable handle=".control-bar" onStart={handleDrag}>
+      <div
+        className="main-screen"
+        onClick={handleClick}
+        style={{ zIndex: `${zIndex}` }}
+      >
         <ControlBar
           handleAddNewNote={handleAddNewNote}
           handleCloseNote={handleCloseNote}

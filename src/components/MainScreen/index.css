@@ -1,9 +1,10 @@
 .main-screen {
   width: 600px;
   height: 400px;
-  background-color: slategray;
+  background-color: #202020;
   border-radius: 5px;
   border: 1px solid;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
