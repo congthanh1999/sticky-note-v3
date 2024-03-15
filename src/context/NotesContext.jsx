@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { noteDateTimeComparator } from "../../utils/utils";
 
 export const NotesContext = createContext();
 
@@ -6,20 +7,25 @@ const notesReducer = (state, action) => {
   switch (action.type) {
     case "SET_NOTES":
       return {
-        notes: action.payload,
+        notes: action.payload.sort((a, b) => noteDateTimeComparator(a, b)),
       };
     case "CREATE_NOTE":
       return {
-        notes: [...state.notes, action.payload],
+        notes: [action.payload, ...state.notes],
       };
     case "UPDATE_NOTE":
       return {
-        ...state,
-        notes: state.notes.map((note) =>
-          note.id === action.payload.id
-            ? { ...note, content: action.payload.content }
-            : note
-        ),
+        notes: state.notes
+          .map((note) =>
+            note.id === action.payload.id
+              ? {
+                  ...note,
+                  content: action.payload.content,
+                  updated_at: action.payload.updated_at,
+                }
+              : note
+          )
+          .sort((a, b) => noteDateTimeComparator(a, b)),
       };
     default:
       return state;

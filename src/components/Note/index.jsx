@@ -23,7 +23,12 @@ const Note = (props) => {
   const handleWriteNote = async (event, id) => {
     event.preventDefault();
 
-    const newData = { ...props.data, content: event.target.value };
+    const date = new Date().toString();
+    const newData = {
+      ...props.data,
+      content: event.target.value,
+      updated_at: date,
+    };
 
     dispatch({
       type: "UPDATE_NOTE",
@@ -31,7 +36,7 @@ const Note = (props) => {
     });
 
     await fetch(`http://localhost:3000/notes/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(newData),
     });
@@ -40,7 +45,13 @@ const Note = (props) => {
   useClickOutside(noteRef, handleClickOutside);
 
   return (
-    <Draggable handle=".control-bar" onStart={props.handleDrag}>
+    <Draggable
+      handle=".control-bar"
+      onStart={() => {
+        setIsActive(true);
+        props.handleDrag;
+      }}
+    >
       <div
         ref={noteRef}
         className={`note-container ${isActive ? "active" : ""} ${

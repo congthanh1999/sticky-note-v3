@@ -1,15 +1,25 @@
-import { FaPlus, FaTimes } from "react-icons/fa";
+import { FaPlus, FaTimes, FaEllipsisH } from "react-icons/fa";
 import "./index.css";
 
-const ControlBar = ({ handleAddNewNote, handleCloseNote, inactive }) => {
+const ControlBar = ({
+  handleAddNewNote,
+  handleCloseNote,
+  handleAdjustNoteColor,
+  inactive,
+}) => {
   return (
     <div className={`control-bar ${inactive}`}>
       <button className={`${inactive}`} onClick={handleAddNewNote}>
         <FaPlus />
       </button>
-      <button className={`${inactive}`} onClick={handleCloseNote}>
-        <FaTimes />
-      </button>
+      <div className="right-content">
+        <button onClick={handleAdjustNoteColor}>
+          <FaEllipsisH />
+        </button>
+        <button className={`${inactive}`} onClick={handleCloseNote}>
+          <FaTimes />
+        </button>
+      </div>
     </div>
   );
 };
