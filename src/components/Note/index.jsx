@@ -4,6 +4,7 @@ import useClickOutside from "../../hooks/useClickOutside";
 import Draggable from "react-draggable";
 import ControlBar from "../ControlBar";
 import { useNotesContext } from "../../hooks/useNotesContext";
+import ColorPicker from "../ColorPicker";
 
 const Note = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -65,6 +66,7 @@ const Note = (props) => {
           handleCloseNote={props.handleCloseNote}
           inactive={isActive ? `` : `inactive`}
         />
+        <ColorPicker />
         <div className="note-content">
           <textarea
             placeholder="Write your note here!"

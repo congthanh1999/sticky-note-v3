@@ -8,6 +8,7 @@
   background-color: #e8be15;
   border-radius: 5px 5px 0px 0px;
   transition: height 0.2s;
+  position: fixed;
 }
 
 .control-bar.inactive {

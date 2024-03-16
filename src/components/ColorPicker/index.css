@@ -1,0 +1,39 @@
+.color-picker {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
+.color-picker .color {
+  height: 100%;
+}
+
+#yellow {
+  background-color: #d7ad04;
+}
+
+#green {
+  background-color: #5eae54;
+}
+
+#pink {
+  background-color: #da7db5;
+}
+
+#purple {
+  background-color: #a477d1;
+}
+
+#blue {
+  background-color: #53b3d8;
+}
+
+#gray {
+  background-color: #8e8e8e;
+}
+
+#charcoal {
+  background-color: #505050;
+}

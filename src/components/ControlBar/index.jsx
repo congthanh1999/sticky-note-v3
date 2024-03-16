@@ -13,7 +13,7 @@ const ControlBar = ({
         <FaPlus />
       </button>
       <div className="right-content">
-        <button onClick={handleAdjustNoteColor}>
+        <button className={`${inactive}`} onClick={handleAdjustNoteColor}>
           <FaEllipsisH />
         </button>
         <button className={`${inactive}`} onClick={handleCloseNote}>
