@@ -3,14 +3,53 @@
     {
       "id": "678",
       "content": "codingd",
+      "color": "yellow",
       "created_at": "Fri Mar 15 2024 13:40:09 GMT+0700 (Indochina Time)",
-      "updated_at": "Fri Mar 15 2024 14:57:32 GMT+0700 (Indochina Time)"
+      "updated_at": "Sat Mar 16 2024 14:47:58 GMT+0700 (Indochina Time)"
     },
     {
       "id": "336",
-      "content": "okndvok",
+      "content": "okndvokd wewfwfd",
+      "color": "yellow",
       "created_at": "Fri Mar 15 2024 14:07:45 GMT+0700 (Indochina Time)",
-      "updated_at": "Fri Mar 15 2024 14:07:57 GMT+0700 (Indochina Time)"
+      "updated_at": "Mon Mar 18 2024 08:04:24 GMT+0700 (Indochina Time)"
+    },
+    {
+      "id": "2849",
+      "content": "dvxzvx",
+      "color": "yellow",
+      "created_at": "Sat Mar 16 2024 14:59:05 GMT+0700 (Indochina Time)",
+      "updated_at": "Sat Mar 16 2024 14:59:20 GMT+0700 (Indochina Time)"
+    }
+  ],
+  "colors": [
+    {
+      "name": "yellow",
+      "value": "#d7ad04"
+    },
+    {
+      "name": "green",
+      "value": "#5eae54"
+    },
+    {
+      "name": "pink",
+      "value": "#da7db5"
+    },
+    {
+      "name": "purple",
+      "value": "#a477d1"
+    },
+    {
+      "name": "blue",
+      "value": "#53b3d8"
+    },
+    {
+      "name": "gray",
+      "value": "#8e8e8e"
+    },
+    {
+      "name": "charcoal",
+      "value": "#505050"
     }
   ]
 }

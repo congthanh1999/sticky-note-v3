@@ -4,7 +4,7 @@ import "./index.css";
 const ControlBar = ({
   handleAddNewNote,
   handleCloseNote,
-  handleAdjustNoteColor,
+  handleOpenMenu,
   inactive,
 }) => {
   return (
@@ -13,7 +13,7 @@ const ControlBar = ({
         <FaPlus />
       </button>
       <div className="right-content">
-        <button className={`${inactive}`} onClick={handleAdjustNoteColor}>
+        <button className={`${inactive}`} onClick={handleOpenMenu}>
           <FaEllipsisH />
         </button>
         <button className={`${inactive}`} onClick={handleCloseNote}>

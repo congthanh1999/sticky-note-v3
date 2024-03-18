@@ -16,7 +16,6 @@ function App() {
 
       if (res.ok) {
         dispatch({ type: "SET_NOTES", payload: json });
-        dispatch({ type: "SORT_NOTES", payload: json });
       }
     };
 
@@ -44,6 +43,7 @@ function App() {
       created_at: date,
       updated_at: date,
     };
+    
     dispatch({ type: "CREATE_NOTE", payload: newNote });
 
     await fetch(`http://localhost:3000/notes`, {

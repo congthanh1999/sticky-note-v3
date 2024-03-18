@@ -6,9 +6,8 @@
   width: 100%;
   height: 30px;
   background-color: #e8be15;
-  border-radius: 5px 5px 0px 0px;
   transition: height 0.2s;
-  position: fixed;
+  position: absolute;
 }
 
 .control-bar.inactive {
@@ -18,7 +17,6 @@
 
 button {
   border: none;
-  border-radius: 5px;
   background-color: transparent;
   width: 30px;
   height: 30px;

@@ -4,7 +4,7 @@ import useClickOutside from "../../hooks/useClickOutside";
 import Draggable from "react-draggable";
 import ControlBar from "../ControlBar";
 import { useNotesContext } from "../../hooks/useNotesContext";
-import ColorPicker from "../ColorPicker";
+import Menu from "../Menu";
 
 const Note = (props) => {
   const [isActive, setIsActive] = useState(false);
@@ -43,6 +43,8 @@ const Note = (props) => {
     });
   };
 
+  const handleOpenMenu = () => {};
+
   useClickOutside(noteRef, handleClickOutside);
 
   return (
@@ -64,9 +66,10 @@ const Note = (props) => {
         <ControlBar
           handleAddNewNote={props.handleAddNewNote}
           handleCloseNote={props.handleCloseNote}
+          handleOpenMenu={handleOpenMenu}
           inactive={isActive ? `` : `inactive`}
         />
-        <ColorPicker />
+        <Menu />
         <div className="note-content">
           <textarea
             placeholder="Write your note here!"

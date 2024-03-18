@@ -1,0 +1,22 @@
+.menu {
+  height: 0px;
+  width: 100%;
+  position: absolute;
+  transition: height 0.2s;
+}
+
+.menu.active {
+  height: 50px;
+  transition: height 0.2s;
+}
+
+.menu-color {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template: 1fr / repeat(7, 1fr);
+}
+
+.color {
+  height: 100%;
+}

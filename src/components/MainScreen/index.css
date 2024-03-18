@@ -2,8 +2,6 @@
   width: 600px;
   height: 405px;
   background-color: #202020;
-  border-radius: 5px;
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   gap: 5px;

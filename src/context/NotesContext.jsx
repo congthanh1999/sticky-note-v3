@@ -27,6 +27,14 @@ const notesReducer = (state, action) => {
           )
           .sort((a, b) => noteDateTimeComparator(a, b)),
       };
+    case "UPDATE_NOTE_COLOR":
+      return {
+        notes: state.notes.map((note) =>
+          note.id === action.payload.id
+            ? { ...note, color: action.payload }
+            : note
+        ),
+      };
     default:
       return state;
   }
