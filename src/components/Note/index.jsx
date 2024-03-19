@@ -8,15 +8,18 @@ import Menu from "../Menu";
 
 const Note = (props) => {
   const [isActive, setIsActive] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const noteRef = useRef(null);
   const { dispatch } = useNotesContext();
 
   const handleClickOutside = () => {
     setIsActive(false);
+    setToggleMenu(false);
   };
 
   const handleOnClick = () => {
     setIsActive(true);
+    setToggleMenu(false);
 
     props.handleClick();
   };
@@ -43,7 +46,12 @@ const Note = (props) => {
     });
   };
 
-  const handleOpenMenu = () => {};
+  const handleOpenMenu = (event) => {
+    event.stopPropagation();
+
+    setIsActive(false);
+    setToggleMenu(true);
+  };
 
   useClickOutside(noteRef, handleClickOutside);
 
@@ -66,10 +74,10 @@ const Note = (props) => {
         <ControlBar
           handleAddNewNote={props.handleAddNewNote}
           handleCloseNote={props.handleCloseNote}
-          handleOpenMenu={handleOpenMenu}
+          handleOpenMenu={(event) => handleOpenMenu(event)}
           inactive={isActive ? `` : `inactive`}
         />
-        <Menu />
+        <Menu toggle={toggleMenu ? `active` : ``} />
         <div className="note-content">
           <textarea
             placeholder="Write your note here!"

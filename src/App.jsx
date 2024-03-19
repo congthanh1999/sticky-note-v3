@@ -73,6 +73,7 @@ function App() {
 
   const handleCloseNote = (event, id) => {
     event.stopPropagation();
+    
     if (notes.find((note) => note.id === id)?.content === "") {
       handleDeleteNote(id);
     } else {

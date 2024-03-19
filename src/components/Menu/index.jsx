@@ -10,11 +10,11 @@ const colors = [
   { name: "charcoal", value: "#505050" },
 ];
 
-const Menu = ({ active }) => {
+const Menu = ({ toggle }) => {
   const handleChoseColor = () => {};
 
   return (
-    <div className={`menu ${active}`}>
+    <div className={`menu ${toggle}`}>
       <div className={`menu-color`}>
         {colors.map((color) => (
           <div
