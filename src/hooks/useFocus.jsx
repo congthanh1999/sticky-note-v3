@@ -1,11 +1,16 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 
-// const useFocus = (ref, action) => {
-//   useEffect(() => {
-//     const handleOnFocus = () => {
-//       ref.current.focus();
-//     };
-//   });
-// };
+const useFocus = (ref, action) => {
+  useEffect(() => {
+    const handleOnFocus = () => {
+      if (ref.current && !ref.current.focus()) {
+        action();
+        ref.current.focus();
+      }
+    };
 
-// export default useFocus;
+    if (ref.current) ref.current.addEventListener("focus", handleOnFocus);
+  }, [ref, action]);
+};
+
+export default useFocus;

@@ -76,14 +76,16 @@ const Note = (props) => {
           handleCloseNote={props.handleCloseNote}
           handleOpenMenu={(event) => handleOpenMenu(event)}
           inactive={isActive ? `` : `inactive`}
+          backgroundColor={props.backgroundColor}
         />
-        <Menu toggle={toggleMenu ? `active` : ``} />
+        <Menu toggle={toggleMenu ? `active` : ``} data={props.data} />
         <div className="note-content">
           <textarea
             placeholder="Write your note here!"
             defaultValue={props.data.content}
             onChange={(event) => handleWriteNote(event, props.data.id)}
             spellCheck={false}
+            ref = {props.inputRef}
           ></textarea>
         </div>
       </div>

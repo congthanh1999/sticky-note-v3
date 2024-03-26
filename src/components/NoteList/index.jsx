@@ -15,6 +15,7 @@ const NoteList = ({ data, handleOpenNote, handleDeleteNote }) => {
                 : truncate(`Write your note here!`)
             }
             date={d.updated_at}
+            borderColor={d.color}
             handleOpenNote={() => handleOpenNote(d.id)}
             handleDeleteNote={() => handleDeleteNote(d.id)}
           />

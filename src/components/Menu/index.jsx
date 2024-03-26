@@ -1,17 +1,21 @@
+import { useNotesContext } from "../../hooks/useNotesContext";
 import "./index.css";
+import { colors } from "../../../utils/colors";
 
-const colors = [
-  { name: "yellow", value: "#d7ad04" },
-  { name: "green", value: "#5eae54" },
-  { name: "pink", value: "#da7db5" },
-  { name: "purple", value: "#a477d1" },
-  { name: "blue", value: "#53b3d8" },
-  { name: "gray", value: "#8e8e8e" },
-  { name: "charcoal", value: "#505050" },
-];
+const Menu = ({ toggle, data }) => {
+  const { dispatch } = useNotesContext();
 
-const Menu = ({ toggle }) => {
-  const handleChoseColor = () => {};
+  const handleChooseColor = async (color) => {
+    const newData = { ...data, color: color };
+
+    dispatch({ type: "UPDATE_NOTE_COLOR", payload: newData });
+
+    await fetch(`http://localhost:3000/notes/${data.id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(newData),
+    });
+  };
 
   return (
     <div className={`menu ${toggle}`}>
@@ -22,7 +26,7 @@ const Menu = ({ toggle }) => {
             className="color"
             id={`#${color.name}`}
             style={{ backgroundColor: `${color.value}` }}
-            onClick={handleChoseColor}
+            onClick={() => handleChooseColor(color.value)}
           ></div>
         ))}
       </div>

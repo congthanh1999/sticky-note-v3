@@ -6,9 +6,13 @@ const ControlBar = ({
   handleCloseNote,
   handleOpenMenu,
   inactive,
+  backgroundColor,
 }) => {
   return (
-    <div className={`control-bar ${inactive}`}>
+    <div
+      className={`control-bar ${inactive}`}
+      style={{ backgroundColor: `${backgroundColor}` }}
+    >
       <button className={`${inactive}`} onClick={handleAddNewNote}>
         <FaPlus />
       </button>

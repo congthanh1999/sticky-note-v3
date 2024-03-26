@@ -7,9 +7,10 @@ const NoteSummary = ({
   time,
   handleOpenNote,
   handleDeleteNote,
+  borderColor 
 }) => {
   return (
-    <div className="note-summary" onDoubleClick={handleOpenNote}>
+    <div className="note-summary" onDoubleClick={handleOpenNote} style={{borderTop:`5px solid ${borderColor}`}}>
       <p className="short-content">{summary}</p>
       <div className="right-content">
         <div className="date-time">

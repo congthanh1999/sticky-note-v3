@@ -31,7 +31,7 @@ const notesReducer = (state, action) => {
       return {
         notes: state.notes.map((note) =>
           note.id === action.payload.id
-            ? { ...note, color: action.payload }
+            ? { ...note, color: action.payload.color }
             : note
         ),
       };

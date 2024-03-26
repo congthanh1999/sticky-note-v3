@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import MainScreen from "./components/MainScreen";
 import Note from "./components/Note";
@@ -8,6 +8,7 @@ import { getRandom } from "../utils/utils";
 function App() {
   const { notes, dispatch } = useNotesContext();
   const [activeList, setActiveList] = useState(["10000"]);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,10 +41,11 @@ function App() {
     const newNote = {
       id: `${getRandom()}`,
       content: "",
+      color: "#d7ad04",
       created_at: date,
       updated_at: date,
     };
-    
+
     dispatch({ type: "CREATE_NOTE", payload: newNote });
 
     await fetch(`http://localhost:3000/notes`, {
@@ -73,7 +75,7 @@ function App() {
 
   const handleCloseNote = (event, id) => {
     event.stopPropagation();
-    
+
     if (notes.find((note) => note.id === id)?.content === "") {
       handleDeleteNote(id);
     } else {
@@ -107,6 +109,8 @@ function App() {
             handleDrag={() => handleClick(note.id)}
             handleClick={() => handleClick(note.id)}
             zIndex={activeList.indexOf(note.id)}
+            backgroundColor={note.color}
+            inputRef={inputRef}
           />
         ))}
     </div>
